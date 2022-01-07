@@ -6,7 +6,7 @@ using std::cout;
 using std::endl;
 using std::cin;
 
-void computerAction() {
+void computerOption() {
     cout << " Select how computer chooses its move:\n"
          << " 1. Always choose Paper\n"
          << " 2. Random guess\n"
@@ -54,10 +54,17 @@ void checkResult(int &score, char userMove, char compMove) {
         cout << "   Tie." << " Score: " << score << endl;
     }
 }
+
+void getInput() {
+    
+}
+
+
 int main() {
     
     int option, count = 0, score = 0;
     char userMove;
+    int arrScore[] = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
 
     cout << "\n Welcom to the Rock/Paper/Scissor where you play against\n"
          << " the computer. On each move the computer will choose R, P, or S, then\n"
@@ -67,7 +74,7 @@ int main() {
          << " The game ends if the score reaches -5 or +5\n"
          << " User input of 'X' or 'x' cause the game to exit.\n"
          << "\n Here wo go!\n\n";
-    computerAction();
+    computerOption();
 
     cout << " Enter your choice: "; cin >> option;
 
@@ -77,7 +84,6 @@ int main() {
             count++;
             cout << endl << count << ". Your move: "; cin >> userMove;
             if (userMove == 'X') {
-                cout << " Exiting the game..." << endl;
                 break;
             }
             cout << "   Computer choose: " << compMove << endl;
@@ -85,7 +91,29 @@ int main() {
             if (score == 5 || score == -5) {
                 break;
             }
-        } 
+        } else if (option == 2) {
+            char compMove = computerMove();
+            count++;
+            cout << endl << count << ". Your move: "; cin >> userMove;
+            if (userMove == 'X') {
+                break;
+            }
+            cout << "   Computer choose: " << compMove << endl;
+            checkResult(score, userMove, compMove);
+            if (score == 5 || score == -5) {
+                break;
+            }
+        } else if (option == 3) {
+        
+        }
+    }
+    cout << endl << " Exiting the game..." << endl;
+    if (score > 0) {
+        cout << " User wins!" << endl;
+    } else if (score < 0) {
+        cout << " Computer wins!" << endl;
+    } else {
+        cout << " Tie game!" << endl;
     }
     return 0;
 }
