@@ -8,15 +8,28 @@ using std::cin;
 
 void computerAction() {
     cout << " Select how computer chooses its move:\n"
-         << " 1. Always choose Rock\n"
-         << " 2. Always choose Paper\n"
-         << " 3. Always choose Scissors\n"
-         << " 4. Random guess\n"
-         << " 5. Random guess with graphical score\n";
+         << " 1. Always choose Paper\n"
+         << " 2. Random guess\n"
+         << " 3. Random guess with graphical score\n";
+}
+
+char compMove() {
+
+    srand(time(NULL));
+    int rd = rand() % 3 + 1;
+    
+    if (rd == 1) {
+        return 'R';
+    } else if (rd == 2) {
+        return 'P';
+    } else if (rd == 3) {
+        return 'S';
+    }
 }
 
 int main() {
     
+    int choice, count = 0;
     char userMove;
 
     cout << "\n Welcom to the Rock/Paper/Scissor where you play against\n"
@@ -29,7 +42,7 @@ int main() {
          << "\n Here wo go!\n\n";
     computerAction();
 
-    cout << " Enter your choice: "; cin >> userMove;
+    cout << " Enter your choice: "; cin >> choice;
 
     
     return 0;
