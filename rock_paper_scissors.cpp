@@ -13,7 +13,7 @@ void computerAction() {
          << " 3. Random guess with graphical score\n";
 }
 
-char compMove() {
+char computerMove() {
 
     srand(time(NULL));
     int rd = rand() % 3;
@@ -43,6 +43,17 @@ int compareMove(char userInput, char compMove) {
     }
 }
 
+void checkResult(int &score, char userMove, char compMove) {
+    if (compareMove(userMove, compMove) == 1) {
+        score += 1;
+        cout << "   User's point." << " Score: " << score << endl;
+    } else if (compareMove(userMove, compMove) == 2) {
+        score -= 1;
+        cout << "   Computer's point." << " Score: " << score << endl;
+    } else {
+        cout << "   Tie." << " Score: " << score << endl;
+    }
+}
 int main() {
     
     int option, count = 0, score = 0;
@@ -64,28 +75,17 @@ int main() {
         if (option == 1) {
             char compMove = 'P';
             count++;
-            cout << endl << count << ". Your move: ";
-            cin >> userMove;
+            cout << endl << count << ". Your move: "; cin >> userMove;
             if (userMove == 'X') {
                 cout << " Exiting the game..." << endl;
                 break;
             }
             cout << "   Computer choose: " << compMove << endl;
-            if (compareMove(userMove, compMove) == 1) {
-                score += 1;
-                cout << "   User's point." << " Score: " << score << endl;
-            } else if (compareMove(userMove, compMove) == 2) {
-                score -= 1;
-                cout << "   Computer's point." << " Score: " << score << endl;
-            } else {
-                cout << "   Tie." << " Score: " << score << endl;
-            }
-
+            checkResult(score, userMove, compMove);
             if (score == 5 || score == -5) {
                 break;
             }
-        }
+        } 
     }
-    
     return 0;
 }
